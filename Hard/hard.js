@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 let rawdata = fs.readFileSync('./hard.json');
 let employees = JSON.parse(rawdata);
 
-console.log(typeof employees);
 //creating instance for experess 
 
 const app = express();
@@ -25,34 +24,42 @@ app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 
-
+app.get('/employees', (req, res)=>{
+    res.render('employees', {employees: employees.employees})
+})
 app.get('/:id', (req, res)=>{
-
+    let found = false;
     employees.employees.forEach(element => {
         let id = parseInt(req.params.id) 
-        if(element.employeeID == id){
-            
-            res.render('hard', 
+        if(element.employeeID === id && found === false){
+            res.set('Cache-Control', 'no-store');
+            res.status(200).render('hard', 
             {id: element.employeeID,
             name: element.name,
             salary: element.salary,
             department: element.department
-            })
+            });
+            found = true;
         }
         
     });
 
+    if(!found){
+        res.status(404);
         res.render('errors')
+    }
+        
    
 })
 
+
+
 app.get('/', (req, res)=>{
+    res.status(200);
     res.render('home')
 })
 
-app.get('/employees', (req, res)=>{
-    res.render('employees')
-})
+
 
 app.listen(port, ()=>{
     console.log(`listening at port: ${port}`);

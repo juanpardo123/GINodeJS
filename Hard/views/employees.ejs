@@ -7,7 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <% %>
-    <h1>Error</h1>
+    <%employees.forEach(e=>{%>
+        <div class="box">
+        <h1>employeeID:<%=e.employeeID%></h1>
+        <h1>name:<%=e.name%></h1>
+        <h1>salary:<%=e.salary%></h1>
+        <h1>department:<%=e.department%></h1>
+    </div>    
+        <%})%>
+   
 </body>
+ 
 </html>

@@ -28,10 +28,10 @@ app.get('/employees', (req, res)=>{
     res.render('employees', {employees: employees.employees})
 })
 
-app.get('/all', (req, res)=>{
+app.get('/employees/all', (req, res)=>{
     res.render('employees', {employees: employees.employees})
 })
-app.get('/:id', (req, res)=>{
+app.get('/employees/:id', (req, res)=>{
     let found = false;
     employees.employees.forEach(element => {
         let id = parseInt(req.params.id) 

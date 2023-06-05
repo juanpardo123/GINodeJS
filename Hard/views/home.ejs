@@ -4,9 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HomePage</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <h1>Search By employee ID</h1>\
+    <div class="input-area">
+        <input type="text" id="eID">
+        <div class="button">
+            <h2>submit</h2>
+        </div>
+    </div>
+   
+    <h2>search "all" or "employees" to see all employees info</h2>
+
+    
 </body>
+<%- include("./partials/styles.ejs") %>
+<style>
+    input{
+        margin-right: 1rem;
+    border-radius: 11px;
+    border-style: hidden;
+    margin-left: 1rem;
+    }
+
+    textarea{
+        width: 376px;
+        height: 55px;
+        margin: 25px;
+    }
+
+    .input-area{
+        display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    }
+    .button{
+        display: flex;
+    background-color: blueviolet;
+    border-radius: 20px;
+    /* height: fit-content; */
+    height: 46px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+    }
+
+    form{
+        display: flex;
+    }
+
+   
+</style>
+<script>
+    let button = document.querySelector(".button");
+    let textBox = document.querySelector("#eID");
+
+    button.addEventListener('click', ()=>{
+        console.log(textBox.value)
+        window.location.href = '/' + textBox.value;
+    })
+</script>
 </html>

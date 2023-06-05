@@ -27,6 +27,10 @@ app.set('view engine', 'ejs');
 app.get('/employees', (req, res)=>{
     res.render('employees', {employees: employees.employees})
 })
+
+app.get('/all', (req, res)=>{
+    res.render('employees', {employees: employees.employees})
+})
 app.get('/:id', (req, res)=>{
     let found = false;
     employees.employees.forEach(element => {
@@ -54,6 +58,7 @@ app.get('/:id', (req, res)=>{
 
 
 
+
 app.get('/', (req, res)=>{
     res.status(200);
     res.render('home')
@@ -66,3 +71,4 @@ app.listen(port, ()=>{
 })
 
 app.locals.employees = employees;
+
